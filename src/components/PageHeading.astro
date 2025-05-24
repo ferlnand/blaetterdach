@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import headerLogo from "../assets/logo_header.webp";
+
+const { title } = Astro.props;
+---
+
+<div>
+  <h1>{title}</h1>
+</div>
+
+<style>
+  div {
+    margin-top: var(--navbar-height);
+    padding: 0.5rem 2rem;
+    color: white;
+    background-color: #444;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+</style>

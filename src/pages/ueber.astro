@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import PageHeading from "../components/PageHeading.astro";
+import Layout from "../layouts/Layout.astro";
+import headerLogo from "../assets/logo_header.webp";
+---
+
+<Layout>
+  <PageHeading title={"Über Mich"} />
+  <section>
+    <div id="container">
+      <div>
+        <Image src={headerLogo} alt="Logo Blätterdach" />
+      </div>
+      <div>
+        <h2>Wer bin ich?</h2>
+        <p>
+          Schon während des Studiums der Landschaftsarchitekur und Landschaftsplanung an der
+          Universität für Bodenkultur in Wien begann ich mich für Baumpflege zu interessieren und
+          arbeite seit 2012 in diesem Bereich.
+        </p>
+        <p>
+          Es folgten Ausbildungen in Seilklettertechnik und auch die europäische Zertifizierung zum
+          Baumpfleger (ETW) und Baumtechniker (ETT). Seitdem habe ich viele Erfahrungen mit größeren
+          und kleineren Projekten machen können.
+        </p>
+        <p>
+          Durch meine Liebe zur Natur und meinem gleichzeitigen Dasein als Stadtmensch ist es mir
+          besonders wichtig, dass auch in der Stadt der gemeinsame Lebensraum von Baum und Mensch
+          erhalten bleibt. Dazu leiste ich gern meinen Beitrag.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Unternehmensphilosophie</h2>
+    <p>
+      Blätterdach - Baumpflege steht für Nachhaltigkeit und Fachhandwerk. Jeder Baum zählt, vor
+      allem in Zeiten der Klimakrise. Bäume leisten vielfältige ökologische Dienstleistungen:
+      Beschattung, kühle Luft durch Verdunstung von Wasser, CO2 Bindung und vieles mehr.
+    </p>
+    <p>
+      Ich möchte durch meine pflegerische Tätigkeit ihren Baum professionell in seinem aktuellen
+      Lebensabschnitt begleiten, damit kommende Generationen auch noch Freude daran haben können. Es
+      ist mein Ziel, als Wegbegleiter die Ansprüche des Baumes mit Ihren Wünschen und Bedürfnissen
+      als Baumhalter in Einklang zu bringen.
+    </p>
+    <p>
+      Trotz aller Vorkehrungen sind manche Bäume ab einem gewissen Zustand nicht mehr
+      verkehrssicher. Diese Bäume müssen manchmal entfernt werden. Doch auch hier gibt es für den
+      Baum noch Möglichkeiten einen wertvollen Beitrag zu leisten: Als Habitatbaum bieten selbst
+      tote Bäume unzähligen Arten Unterschlupf und tragen so zu einer erhöhten Biodiversität bei.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  #container {
+    display: flex;
+    justify-content: center;
+    padding: 4rem;
+
+    & > div {
+      max-width: 600px;
+      flex: 1;
+      padding: 4rem;
+    }
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+
+    & > * {
+      max-width: 1280px;
+    }
+  }
+
+  img {
+    display: inline;
+  }
+</style>

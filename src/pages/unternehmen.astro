@@ -1,0 +1,47 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <PageHeading title={"Für Unternehmen"} />
+  <div id="container">
+    <div>
+      <h2>Unterstützung durch kompetente Fachkraft</h2>
+      <p>
+        Sie brauchen Unterstützung bei einem Projekt? Sie haben einen akuten oder geplanten
+        Mitarbeiterausfall durch Krankheit oder Urlaub? Rufen Sie mich an!
+      </p>
+      <p>Als zertifizierter ETW und ETT übernehme ich gerne Verantwortung bei Ihrem Projekt.</p>
+      <p>
+        Bei Interesse schreiben Sie mir einfach ein e-mail oder rufen Sie mich gerne an. Auf Wunsch
+        sende ich Ihnen eine Liste meiner aktuellen Konditionen zu.
+      </p>
+    </div>
+    <div>
+      <form>
+        <div><label>Firma</label><input type="text" /></div>
+        <div><label>ATU</label><input type="text" /></div>
+        <div><label>Email</label><input type="text" /></div>
+        <div><label>Telefon</label><input type="text" /></div>
+        <div><label>Adresse</label><input type="text" /></div>
+        <div><label>Nachricht</label><textarea></textarea></div>
+        <button type="submit">Nachricht senden</button>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  #container {
+    display: flex;
+    justify-content: center;
+    padding: 4rem;
+
+    & > div {
+      max-width: 600px;
+      flex: 1;
+      padding: 4rem;
+    }
+  }
+</style>

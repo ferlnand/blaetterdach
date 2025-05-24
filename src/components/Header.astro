@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import headerLogo from "../assets/logo_header.webp";
+---
+
+<header>
+  <nav>
+    <a href="/" class="logo">
+      <Image src={headerLogo} alt="Logo Blätterdach" />
+    </a>
+    <a href="/">Start</a>
+    <a href="/leistungen">Leistungen</a>
+    <a href="/unternehmen">Für Unternehmen</a>
+    <a href="/ueber">Über Mich</a>
+    <a href="/agb">Agb</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fdfff5;
+    /* box-shadow: 0px 5px 24px #aaaa; */
+    border-bottom: 1px solid #ddd;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    height: var(--navbar-height);
+    padding: 1rem;
+    box-sizing: border-box;
+
+    a {
+      padding: 8px;
+      font-variant-caps: small-caps;
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+      letter-spacing: 0.04rem;
+      text-decoration: none;
+
+      &:hover {
+        color: #608540;
+        text-decoration: underline;
+      }
+
+      &.logo {
+        margin-right: auto;
+      }
+
+      & > img {
+        height: calc(var(--navbar-height) - 1rem);
+        width: auto;
+        object-fit: contain;
+      }
+    }
+  }
+</style>

@@ -1,11 +1,130 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+import headerLogo from "../assets/logo_header.webp";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-	<Welcome />
+  <section class="hero">
+    <div>
+      <h1>Nachhaltige Baumpflege von Ihrem Fachmann</h1>
+      <p class="tagline">Ich bin der Ansprechpartner für Ihre Bäume</p>
+      <p>
+        Von der Neupflanzung über Totholzentfernungen bis hin zur Spezialabtragung im Innenhof: Dank
+        meiner langjährigen Erfahrung im Bereich der Baumpflege finde ich für jedes Problem eine
+        Lösung in Ihrem Interesse - und in dem Ihres Baumes!
+      </p>
+    </div>
+    <div><Image src={headerLogo} alt="Logo Blätterdach" /></div>
+  </section>
+  <section>
+    <div>
+      <Image src={headerLogo} alt="Logo Blätterdach" />
+    </div>
+    <div>
+      <h2>Seilklettertechnik</h2>
+      <p>
+        Die Seilklettertechnik ist eine besonders baumschonende Zustiegsmethode um gesichertes
+        Arbeiten im Baum zu gewährleisten. Sie erlaubt es, auch bei beengten Verhältnissen sicher
+        und präzise zu arbeiten. Durch den Verzicht von Arbeits- oder Hebebühnen werden außerdem Ihr
+        Garten und die Umgebung geschont. Mittels Rollen und Seilen können selbst Tonnenschwere Ast-
+        oder Stammteile langsam und gesichert zu Boden gelassen werden um das umgebende Gelände,
+        Bebauungen oder Bepflanzungen zu schonen.
+      </p>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h2>Meine Leistungen</h2>
+      <p>
+        Ich biete Ihnen eine breite Palette von Dienstleistungen im Bereich der Baumpflege.
+        Unabhängig von der Größe des Auftrags begleite ich meine Kunden bei jedem Schritt und biete
+        Ihnen jederzeit eine persönliche und professionelle Beratung.
+      </p>
+    </div>
+    <div>
+      <Image src={headerLogo} alt="Logo Blätterdach" />
+    </div>
+  </section>
+  <section>
+    <div id="services_buttons">
+      <button>Baumpflanzung</button>
+      <button>Jungbaumpflege</button>
+      <button>Kronenpflege</button>
+      <button>Totholzentfernung</button>
+      <button>Baumkontrolle</button>
+      <button>Habitatbaum</button>
+      <button>Rückschnitt</button>
+      <button>Technische Sicherung</button>
+      <button>Abtragungen</button>
+      <button>Gärtnerische Dienstleistungen</button>
+    </div>
+  </section>
+  <section>
+    <div id="contact">
+      <h2>Kontakt</h2>
+      <p>
+        Rufen Sie mich an oder nutzen Sie das Kontaktformular um eine kostenlose Besichtigung
+        auszumachen oder mehr Informationen zu erhalten.
+      </p>
+      <form>
+        <div>
+          <label>Name</label><input type="text" />
+        </div>
+        <div><label>Email</label><input type="text" /></div>
+        <div><label>Telefon</label><input type="text" /></div>
+        <div><label>Nachricht</label><textarea></textarea></div>
+        <button type="submit">Nachricht senden</button>
+      </form>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: #eee;
+    background-color: #111;
+    & > div {
+      flex: 1;
+      padding: 1rem;
+    }
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  .tagline {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  #services_buttons {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1300px;
+
+    & > button {
+      height: 48px;
+      padding: 12px 24px;
+      color: white;
+      background-color: #608540;
+      border: none;
+      border-radius: 24px;
+      font-size: large;
+      font-weight: 500;
+      letter-spacing: 0.04rem;
+    }
+  }
+
+  #contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+  }
+</style>
