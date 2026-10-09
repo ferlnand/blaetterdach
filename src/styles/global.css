@@ -1,3 +1,9 @@
-:root{
+:root {
   --navbar-height: 66px;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --navbar-height: 120px;
+  }
 }

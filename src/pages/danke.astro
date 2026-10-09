@@ -1,0 +1,15 @@
+---
+import PageHeading from "../components/PageHeading.astro";
+import Layout from "../layouts/Layout.astro";
+import { url } from "../lib/url";
+---
+
+<Layout title="Danke" description="Ihre Nachricht wurde gesendet.">
+  <PageHeading title="Danke für Ihre Nachricht" />
+  <section>
+    <div>
+      <p>Ihre Anfrage ist bei mir angekommen. Ich melde mich so bald wie möglich bei Ihnen.</p>
+      <p><a href={url("/")}>Zurück zur Startseite</a></p>
+    </div>
+  </section>
+</Layout>

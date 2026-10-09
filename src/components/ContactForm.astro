@@ -1,0 +1,128 @@
+---
+import { getEntry } from "astro:content";
+import { url } from "../lib/url";
+
+interface Props {
+  variant?: "privat" | "unternehmen";
+}
+
+const { variant = "privat" } = Astro.props;
+const kontakt = (await getEntry("einstellungen", "kontakt"))!.data;
+const redirect = new URL(url("danke/"), Astro.site).href;
+const subject =
+  variant === "unternehmen" ? "Anfrage über blaetterdach.com (Unternehmen)" : "Anfrage über blaetterdach.com";
+---
+
+{
+  kontakt.web3formsKey ? (
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={kontakt.web3formsKey} />
+      <input type="hidden" name="subject" value={subject} />
+      <input type="hidden" name="from_name" value="Website blätterdach" />
+      <input type="hidden" name="redirect" value={redirect} />
+      <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" />
+
+      {variant === "unternehmen" ? (
+        <>
+          <div>
+            <label for={`${variant}-firma`}>Firma</label>
+            <input id={`${variant}-firma`} name="Firma" type="text" autocomplete="organization" required />
+          </div>
+          <div>
+            <label for={`${variant}-uid`}>UID-Nummer</label>
+            <input id={`${variant}-uid`} name="UID" type="text" />
+          </div>
+        </>
+      ) : (
+        <div>
+          <label for={`${variant}-name`}>Name</label>
+          <input id={`${variant}-name`} name="Name" type="text" autocomplete="name" required />
+        </div>
+      )}
+      <div>
+        <label for={`${variant}-email`}>E-Mail</label>
+        <input id={`${variant}-email`} name="email" type="email" autocomplete="email" required />
+      </div>
+      <div>
+        <label for={`${variant}-telefon`}>Telefon</label>
+        <input id={`${variant}-telefon`} name="Telefon" type="tel" autocomplete="tel" />
+      </div>
+      {variant === "unternehmen" && (
+        <div>
+          <label for={`${variant}-adresse`}>Adresse</label>
+          <input id={`${variant}-adresse`} name="Adresse" type="text" autocomplete="street-address" />
+        </div>
+      )}
+      <div>
+        <label for={`${variant}-nachricht`}>Nachricht</label>
+        <textarea id={`${variant}-nachricht`} name="Nachricht" required />
+      </div>
+      <p class="hint">
+        Mit dem Absenden werden Ihre Angaben zur Bearbeitung Ihrer Anfrage verarbeitet. Mehr dazu in der{" "}
+        <a href={url("datenschutzerklaerung/")}>Datenschutzerklärung</a>.
+      </p>
+      <button type="submit">Nachricht senden</button>
+    </form>
+  ) : (
+    <p class="fallback">
+      Schreiben Sie mir an <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a> oder rufen Sie mich an unter{" "}
+      <a href={`tel:${kontakt.telefon.replace(/\s/g, "")}`}>{kontakt.telefon}</a>.
+    </p>
+  )
+}
+
+<style>
+  form {
+    width: 100%;
+    max-width: 600px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+
+      & > label {
+        align-self: flex-start;
+        font-size: small;
+      }
+
+      & > input,
+      & > textarea {
+        font: inherit;
+        border: 1px solid #b1b1b1;
+        border-radius: 8px;
+        padding: 8px 12px;
+      }
+
+      & > textarea {
+        resize: vertical;
+        min-height: 5rem;
+      }
+    }
+
+    & > button {
+      margin-top: 1rem;
+      padding: 12px 24px;
+      color: white;
+      background-color: #608540;
+      border: none;
+      border-radius: 24px;
+      font-size: inherit;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  .honeypot {
+    display: none;
+  }
+
+  .hint {
+    margin: 0;
+    font-size: small;
+    line-height: 1.5;
+  }
+</style>

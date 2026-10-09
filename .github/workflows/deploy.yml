@@ -17,6 +17,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Preview build under ferlnand.github.io/blaetterdach. The real site on
+    # www.blaetterdach.com is built without these and served from the root.
+    env:
+      SITE_URL: https://ferlnand.github.io
+      BASE_PATH: /blaetterdach
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
