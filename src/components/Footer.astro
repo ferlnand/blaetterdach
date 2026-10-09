@@ -1,31 +1,35 @@
 ---
 import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 import headerLogo from "../assets/logo_header.webp";
+import { url } from "../lib/url";
+
+const kontakt = (await getEntry("einstellungen", "kontakt"))!.data;
 ---
 
 <footer>
   <div>
-    <div><Image src={headerLogo} alt="Logo" /></div>
+    <div><Image src={headerLogo} alt="blätterdach Baumpflege" /></div>
     <div>
       <div>
-        <b>blätterdach e.U.</b>
+        <b>{kontakt.firma}</b>
       </div>
       <div id="info_container">
+        <address>
+          <span>{kontakt.name}</span>
+          <span>{kontakt.strasse}, {kontakt.ort}</span>
+          <a href={`tel:${kontakt.telefon.replace(/\s/g, "")}`}>{kontakt.telefon}</a>
+          <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+        </address>
         <div>
-          <span>Simon Biegl</span>
-          <span>Treustraße 92, 1200 Wien</span>
-          <span>+43 670 554 9449</span>
-          <span>office@blaetterdach.com</span>
-        </div>
-        <div>
-          <a href="/blaetterdach/impressum">Impressum</a>
-          <a href="/blaetterdach/agb">AGB</a>
-          <a href="/blaetterdach/datenschutzerklaerung">Datenschutzerklärung</a>
+          <a href={url("impressum/")}>Impressum</a>
+          <a href={url("agb/")}>AGB</a>
+          <a href={url("datenschutzerklaerung/")}>Datenschutzerklärung</a>
         </div>
       </div>
     </div>
   </div>
-  <div>Copyright © blätterdach e.U.</div>
+  <div>© {new Date().getFullYear()} {kontakt.firma}</div>
 </footer>
 
 <style>
@@ -41,6 +45,7 @@ import headerLogo from "../assets/logo_header.webp";
       display: flex;
       justify-content: space-around;
       align-items: center;
+      gap: 2rem;
 
       & > div {
         display: flex;
@@ -53,16 +58,35 @@ import headerLogo from "../assets/logo_header.webp";
     display: flex;
     gap: 4rem;
 
+    & > address,
     & > div {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      font-style: normal;
       line-height: 2;
     }
 
     a {
       display: inline;
       color: inherit;
+    }
+  }
+
+  @media (max-width: 760px) {
+    footer {
+      gap: 2rem;
+      padding: 3rem 1rem 1rem 1rem;
+
+      & > div {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    #info_container {
+      flex-direction: column;
+      gap: 1rem;
     }
   }
 </style>

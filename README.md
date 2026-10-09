@@ -1,48 +1,31 @@
-# Astro Starter Kit: Basics
+# blätterdach Baumpflege
+
+Website von blätterdach e.U., Baumpflege in Wien. Gebaut mit [Astro](https://astro.build), komplett statisch.
+
+## Inhalte bearbeiten
+
+Alle Texte liegen in `src/content/`, nicht im Code:
+
+| Datei | Inhalt |
+| --- | --- |
+| `einstellungen.json` | Kontaktdaten (Footer, Formular) und der Web3Forms-Schlüssel |
+| `seiten/startseite.md`, `ueber.md`, `unternehmen.md` | Texte der Seiten (Absätze durch eine Leerzeile trennen) |
+| `leistungen/*.md` | Eine Datei pro Leistung; `order` bestimmt die Reihenfolge, `image` ist optional |
+| `rechtliches/*.md` | Impressum, AGB, Datenschutzerklärung |
+
+## Entwicklung
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # Ausgabe in dist/
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Veröffentlichung
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **www.blaetterdach.com**: Build mit den Standardwerten (Seite im Root). `public/_redirects` leitet alte Wix-Adressen um.
+- **Vorschau** unter ferlnand.github.io/blaetterdach: `.github/workflows/deploy.yml` baut bei jedem Push auf `main` mit `SITE_URL` und `BASE_PATH`.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Kontaktformular
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Das Formular sendet über [Web3Forms](https://web3forms.com) an office@blaetterdach.com. Solange `web3formsKey` in `einstellungen.json` leer ist, zeigt die Seite stattdessen E-Mail und Telefon.

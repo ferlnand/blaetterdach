@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from "astro:content";
+import PageHeading from "../components/PageHeading.astro";
+import Layout from "../layouts/Layout.astro";
+
+// Impressum, AGB and Datenschutzerklärung, one page per file in src/content/rechtliches.
+export async function getStaticPaths() {
+  const seiten = await getCollection("rechtliches");
+  return seiten.map((seite) => ({ params: { rechtliches: seite.id }, props: { seite } }));
+}
+
+const { seite } = Astro.props;
+const { Content } = await render(seite);
+---
+
+<Layout title={seite.data.title} description={seite.data.description}>
+  <PageHeading title={seite.data.title} />
+  <article>
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    overflow-wrap: break-word;
+  }
+
+  article :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+  }
+
+  article :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

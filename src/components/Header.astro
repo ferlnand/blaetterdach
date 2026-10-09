@@ -1,18 +1,25 @@
 ---
 import { Image } from "astro:assets";
 import headerLogo from "../assets/logo_header.webp";
+import { url } from "../lib/url";
+
+const links = [
+  { href: url("/"), label: "Start" },
+  { href: url("leistungen/"), label: "Leistungen" },
+  { href: url("unternehmen/"), label: "Für Unternehmen" },
+  { href: url("ueber/"), label: "Über mich" },
+  { href: url("/#kontakt"), label: "Kontakt" },
+];
 ---
 
 <header>
   <nav>
-    <a href="/blaetterdach/" class="logo">
-      <Image src={headerLogo} alt="Logo Blätterdach" />
+    <a href={url("/")} class="logo">
+      <Image src={headerLogo} alt="blätterdach Baumpflege, zur Startseite" />
     </a>
-    <a href="/blaetterdach/">Start</a>
-    <a href="/blaetterdach/leistungen">Leistungen</a>
-    <a href="/blaetterdach/unternehmen">Für Unternehmen</a>
-    <a href="/blaetterdach/ueber">Über Mich</a>
-    <a href="/blaetterdach/agb">Agb</a>
+    <div class="links">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </div>
   </nav>
 </header>
 
@@ -20,9 +27,9 @@ import headerLogo from "../assets/logo_header.webp";
   header {
     position: fixed;
     top: 0;
+    z-index: 10;
     width: 100%;
     background-color: #fdfff5;
-    /* box-shadow: 0px 5px 24px #aaaa; */
     border-bottom: 1px solid #ddd;
   }
 
@@ -55,6 +62,33 @@ import headerLogo from "../assets/logo_header.webp";
         height: calc(var(--navbar-height) - 1rem);
         width: auto;
         object-fit: contain;
+      }
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 760px) {
+    nav {
+      flex-direction: column;
+      height: auto;
+      padding: 0.5rem;
+
+      a.logo {
+        margin-right: 0;
+      }
+
+      a {
+        padding: 2px 6px;
+        font-size: 14px;
+      }
+
+      a > img {
+        height: 44px;
       }
     }
   }
